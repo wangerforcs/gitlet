@@ -1,0 +1,60 @@
+make: 'gitlet' is up to date.
+rm -rf .gitlet
+===
+commit 2f9cdeb253e20732597fd2771b4c9e0287a211f8
+Date: Sun Feb 25 00:17:13 2024 -0800
+dev write test1 test2
+
+===
+commit d5eee8fc89cbe0ae24934e705da2e38795b223bb
+Date: Sun Feb 25 00:17:13 2024 -0800
+master write test1
+
+===
+commit 21090c2318e4465f8711209b59ab2d0eceea12c0
+Date: Thu Jan 1 00:00:00 1970 -0800
+initial commit
+
+=== Branches ===
+master
+*dev
+
+=== Staged Files ===
+
+=== Removed Files ===
+
+=== Modifications Not Staged For Commit ===
+
+=== Untracked Files ===
+Encountered a merge conflict.
+===
+commit 6cd207a2a2b1a4e4e585b3c71a0d17d58c69e7ae
+Merge: 10300e3 2f9cdeb 
+Date: Sun Feb 25 00:17:13 2024 -0800
+Merged dev into master.
+
+===
+commit 10300e3af9090acbb2f58d7fe3aaf5ae5a193454
+Date: Sun Feb 25 00:17:13 2024 -0800
+master write test3 rm test1
+
+===
+commit d5eee8fc89cbe0ae24934e705da2e38795b223bb
+Date: Sun Feb 25 00:17:13 2024 -0800
+master write test1
+
+===
+commit 21090c2318e4465f8711209b59ab2d0eceea12c0
+Date: Thu Jan 1 00:00:00 1970 -0800
+initial commit
+
+===
+commit d5eee8fc89cbe0ae24934e705da2e38795b223bb
+Date: Sun Feb 25 00:17:13 2024 -0800
+master write test1
+
+===
+commit 21090c2318e4465f8711209b59ab2d0eceea12c0
+Date: Thu Jan 1 00:00:00 1970 -0800
+initial commit
+

@@ -1,0 +1,29 @@
+samples/ec-test01-untracked.in: 
+status: 
+Expected: ['=== Branches ===', '*master', '', '=== Staged Files ===', '', '=== Removed Files ===', '', '=== Modifications Not Staged For Commit ===', '', '=== Untracked Files ===', 'f.txt', '']
+Actual: === Branches ===
+*master
+
+=== Staged Files ===
+
+=== Removed Files ===
+
+=== Modifications Not Staged For Commit ===
+
+=== Untracked Files ===
+
+samples/ec-test10-remote-fetch-push.in: 
+add-remote R1 ../D1/.gitlet: 
+Expected: []
+Actual: No command with that name exists.
+
+samples/ec-test11-remote-fetch-pull.in: 
+add-remote R1 ../D1/.gitlet: 
+Expected: []
+Actual: No command with that name exists.
+
+samples/ec-test12-bad-remotes-err.in: 
+add-remote R1 ../Dx/.gitlet: 
+Expected: []
+Actual: No command with that name exists.
+
