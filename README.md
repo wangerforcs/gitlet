@@ -18,7 +18,6 @@
 ├── main.cpp
 ├── order.md
 ├── out.txt
-├── run.py
 ├── src
 │   ├── Utils.cpp
 │   ├── blob.cpp
@@ -27,18 +26,14 @@
 │   ├── sha1.cpp
 │   └── stage.cpp
 ├── test.bash
-├── test1.txt
-├── test2.txt
-├── test3.txt
 ├── testJava.bash
 ├── testing
-│   ├── Makefile
-│   ├── out.txt
-│   ├── runner.py
-│   ├── samples
-│   ├── src
-│   └── tester.py
-└── tree.txt
+    ├── Makefile
+    ├── out.txt
+    ├── runner.py
+    ├── samples
+    ├── src
+    └── tester.py
 
 6 directories, 108 files
 ```
