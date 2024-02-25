@@ -28,8 +28,6 @@
 ├── testJava.bash
 ├── testing
     ├── Makefile
-    ├── out.txt
-    ├── runner.py
     ├── samples
     ├── src
     └── tester.py
