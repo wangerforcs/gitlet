@@ -15,7 +15,7 @@ Blob::Blob(const string& srcFile){
     }else{
         endWithNewLine = 0;
     }
-    this->id = SHA1::sha1(srcFile, std::to_string(endWithNewLine) + toString(content));
+    this->id = SHA1::sha1(srcFile, toString(content) + std::to_string(endWithNewLine));
 }
 
 string Blob::getId() const{
