@@ -61,9 +61,13 @@
 ~~其实开始是准备直接改测试代码的，但难度有点大，果断放弃~~
 
 不出意外，44个基础测试只有22个通过，接下来是面向测试用例编程时间。主要修改了Fail输出的信息，以及补上了对于一些特殊情况的处理，大多是merge，比如an untracked file in the current commit would be overwritten or deleted by the merge的情况以及merge conflict的情况。
+
 ~~中间还被"\n"坑了一下导致43一直没过，原因是复制的conflict文件末尾没有"\n"~~
 
 其中merge涉及在有向无环图找到最近公共祖先的问题,简单的做法就是对一个branch进行bfs，每到一个节点就dfs判断节点是否是另一个branch的祖先；或者直接先获得另一个branch的所有祖先集合。
+
+最终测试结果全部通过
+![测试结果](testResult.png)
 
 补充一下测试中in文件的阅读问题
 I: 导入预置命令
