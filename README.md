@@ -16,7 +16,6 @@
 │   └── stage.h
 ├── main.cpp
 ├── order.md
-├── out.txt
 ├── src
 │   ├── Utils.cpp
 │   ├── blob.cpp
@@ -24,15 +23,16 @@
 │   ├── repo.cpp
 │   ├── sha1.cpp
 │   └── stage.cpp
-├── test.bash
 ├── testJava.bash
+├── testResult.png
 ├── testing
     ├── Makefile
     ├── samples
     ├── src
     └── tester.py
 
-6 directories, 108 files
+6 directories, 106 files
+
 ```
 代码文件大小如下，共约1k行
 ```
