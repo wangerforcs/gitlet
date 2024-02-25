@@ -14,6 +14,8 @@ class Blob{
     string id;
     string srcFile;
     vector<string> content;
+    int endWithNewLine;
+    vector<string> readContentsForBlob(const string& file);
     public:
     Blob(){};
     Blob(const string& srcFile);
@@ -23,6 +25,7 @@ class Blob{
     void writeContent() const;
     bool read(const string& file);
     vector<string> getContent() const;
+    string getContentAsString() const;
 };
 
 #endif

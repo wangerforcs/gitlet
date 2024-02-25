@@ -1,5 +1,4 @@
 根据CS61B实现的gitlet C++版本。
-项目目录结构如下
 ```
 .
 ├── Main.class
@@ -54,135 +53,24 @@
    99 main.cpp
  1341 total
 ```
-~~本人未使用autograder，只使用了简单的命令查看结果。~~
-
-命令详见
-
-[test.bash](test.bash)
-
-```bash
-# 在gitlet根目录使用
-make
-make del
-./gitlet init
-
-echo "master write test1" > test1.txt
-./gitlet add test1.txt
-
-./gitlet commit "master write test1"
-
-./gitlet branch dev
-./gitlet checkout dev
-
-echo "dev write test1" > test1.txt
-echo "dev write test2" > test2.txt
-./gitlet add test1.txt
-./gitlet add test2.txt
-
-./gitlet commit "dev write test1 test2"
-
-./gitlet checkout master
-./gitlet checkout dev
-
-./gitlet log
-./gitlet status
-
-./gitlet checkout master
-echo "master write test3" > test3.txt
-./gitlet add test3.txt
-./gitlet rm test1.txt
-./gitlet commit "master write test3 rm test1"
-
-./gitlet merge dev
-./gitlet log
-
-./gitlet checkout dev
-./gitlet reset $(./gitlet find "master write test1")
-./gitlet log
-
-./gitlet checkout master
-./gitlet rm-branch dev
-```
-
-运行完成后你应该会看到类似下面的输出
-
-[out.txt](out.txt)
-
-```txt
-make: 'gitlet' is up to date.
-rm -rf .gitlet
-===
-commit 2f9cdeb253e20732597fd2771b4c9e0287a211f8
-Date: Sun Feb 25 00:17:13 2024 -0800
-dev write test1 test2
-
-===
-commit d5eee8fc89cbe0ae24934e705da2e38795b223bb
-Date: Sun Feb 25 00:17:13 2024 -0800
-master write test1
-
-===
-commit 21090c2318e4465f8711209b59ab2d0eceea12c0
-Date: Thu Jan 1 00:00:00 1970 -0800
-initial commit
-
-=== Branches ===
-master
-*dev
-
-=== Staged Files ===
-
-=== Removed Files ===
-
-=== Modifications Not Staged For Commit ===
-
-=== Untracked Files ===
-Encountered a merge conflict.
-===
-commit 6cd207a2a2b1a4e4e585b3c71a0d17d58c69e7ae
-Merge: 10300e3 2f9cdeb 
-Date: Sun Feb 25 00:17:13 2024 -0800
-Merged dev into master.
-
-===
-commit 10300e3af9090acbb2f58d7fe3aaf5ae5a193454
-Date: Sun Feb 25 00:17:13 2024 -0800
-master write test3 rm test1
-
-===
-commit d5eee8fc89cbe0ae24934e705da2e38795b223bb
-Date: Sun Feb 25 00:17:13 2024 -0800
-master write test1
-
-===
-commit 21090c2318e4465f8711209b59ab2d0eceea12c0
-Date: Thu Jan 1 00:00:00 1970 -0800
-initial commit
-
-===
-commit d5eee8fc89cbe0ae24934e705da2e38795b223bb
-Date: Sun Feb 25 00:17:13 2024 -0800
-master write test1
-
-===
-commit 21090c2318e4465f8711209b59ab2d0eceea12c0
-Date: Thu Jan 1 00:00:00 1970 -0800
-initial commit
-```
-~~以上均输出和文档内容均正确(未使用autograder盲目自信，所以我无耻地使用了代码修改后的输出。~~
-
-> 疑惑  
-> 实现merge时，spec要求的是1和5中都要求相应的文件staged，这点不清楚是什么意思。  
-> merge操作涉及重写文件时，不应该直接在commit和工作目录中修改文件吗？和暂存区有什么关系？
 
 虽然gitlet和git的实现上存在不同，但对于了解git的原理、实现和基础命令有很大帮助。
 
-好吧出于对自己的不信任，我还是费力找到了autograder，并使用Main.java包装测试了一下:)
+最开始使用了自己编写的小型测试并没出现问题，出于对自己的不信任，我还是费力找到了autograder，然后东拼西凑找到了缺少的测试文件，并使用Main.java包装测试了一下:)
 
 ~~其实开始是准备直接改测试代码的，但难度有点大，果断放弃~~
 
-不出意外，44个基础测试只有22个通过，接下来是面向测试用例编程时间。主要修改了Fail输出的信息，以及补上了对于一些特殊情况的处理，主要是merge，比如an untracked file in the current commit would be overwritten or deleted by the merge的情况。
-
-ec之外的测试中33，36，43由于缺少src文件无法正常测试，其余均通过，应该完成的还算可以。
+不出意外，44个基础测试只有22个通过，接下来是面向测试用例编程时间。主要修改了Fail输出的信息，以及补上了对于一些特殊情况的处理，大多是merge，比如an untracked file in the current commit would be overwritten or deleted by the merge的情况以及merge conflict的情况。
+~~中间还被"\n"坑了一下导致43一直没过，原因是复制的conflict文件末尾没有"\n"~~
 
 其中merge涉及在有向无环图找到最近公共祖先的问题,简单的做法就是对一个branch进行bfs，每到一个节点就dfs判断节点是否是另一个branch的祖先；或者直接先获得另一个branch的所有祖先集合。
+
+补充一下测试中in文件的阅读问题
+I: 导入预置命令
++: 写入文件
+\>: gitlet命令 
+=: 测试文件内容
+
+> 疑惑  
+> 实现merge时，spec要求的是1和5中都要求相应的文件staged，这点不清楚是什么意思。  
+> merge操作涉及重写文件时，不应该直接在commit和工作目录中修改文件，然后提交commit并且移动HEAD吗？和暂存区有什么关系？

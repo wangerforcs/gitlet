@@ -299,11 +299,9 @@ void repo::merge(const string& branch){
                 if(ancesterBlob[i.first] == curBlob[i.first]){
                     // 1 当前和祖先相同，和给定不同
                     if(i.second != curBlob[i.first]){
-                        // Blob blob;
-                        // blob.read(join(OBJECTS_DIR, i.second));
-                        // blob.writeContent();
                         checkout(givenCmt.getId(), i.first);
                         mergeBlob[i.first] = i.second;
+                        stage.add(i.first);
                     }
                 }else{
                     // 8 均不同
@@ -334,6 +332,7 @@ void repo::merge(const string& branch){
                 // blob.writeContent();
                 checkout(givenCmt.getId(), i.first);
                 mergeBlob[i.first] = i.second;
+                stage.add(i.first);
             }
         }
     }
@@ -357,6 +356,7 @@ void repo::merge(const string& branch){
     Commit commit(message, {curCmt.getId(), givenCmt.getId()}, mergeBlob);
     commit.write(join(OBJECTS_DIR, commit.getId()));
     fllushHead(commit.getId());
+    stage.reset();
 
     if(confilicted){
         std::cout << "Encountered a merge conflict.\n";
@@ -498,11 +498,11 @@ string repo::dealConflict(const string& file, const string& blob1, const string&
     string content1, content2;
     if(blob1 != ""){
         blob.read(join(OBJECTS_DIR, blob1));
-        content1 = toStringSep(blob.getContent(), "\n");
+        content1 = blob.getContentAsString();
     }
     if(blob2 != ""){
         blob.read(join(OBJECTS_DIR, blob2));
-        content2 = toStringSep(blob.getContent(), "\n");
+        content2 = blob.getContentAsString();
     }
     string newContent = "<<<<<<< HEAD\n" + content1 + "=======\n" + content2 + ">>>>>>>\n";
 
